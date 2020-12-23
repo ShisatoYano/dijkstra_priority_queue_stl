@@ -36,10 +36,22 @@ void shortest_path(vector<pair<int, int>> adj[], int V, int src) {
 
         // get all adjacent of u
         for (auto x : adj[u]) {
+            int v = x.first;
+            int w = x.second;
 
+            if (dist[v] > dist[u] + w) {
+                dist[v] = dist[u] + w;
+                pq.push(make_pair(dist[v], v));
+            }
         }
     }
+
+    printf("Vertex Distance from Source\n");
+    for (int i = 0; i < V; ++i) {
+        printf("%d \t\t %d\n", i, dist[i]);
+    }
 }
+
 int main() {
     int V = 9;
     vector<i_pair> adj[V];
